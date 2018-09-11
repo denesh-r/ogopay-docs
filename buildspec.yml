@@ -47,7 +47,7 @@ artifacts:
     # - location
     # - name
   #discard-paths: yes
-    base-directory: ./build/html
+    base-directory: 'build/html'
 #cache:
   #paths:
     # - path
