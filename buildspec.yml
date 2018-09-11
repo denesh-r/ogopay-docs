@@ -42,12 +42,12 @@ phases:
       # - command
 artifacts:
     files:
-        - ./build/html/*
+        - ./build/html/**/*
     # - location
     # - location
     # - name
   #discard-paths: yes
-  #base-directory: location
+  base-directory: ./build/html
 #cache:
   #paths:
     # - path
