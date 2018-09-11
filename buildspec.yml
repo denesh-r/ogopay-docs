@@ -42,7 +42,7 @@ phases:
       # - command
 artifacts:
     files:
-        - ./build/html/index.html
+        - ./build/html/*
     # - location
     # - location
     # - name
