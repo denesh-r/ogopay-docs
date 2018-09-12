@@ -10,9 +10,7 @@ version: 0.2
 
 phases:
   install:
-    commands:
-        - PATH=/home/python/.venv/bin/:$PATH
-        - pip install sphinx_rtd_theme
+    #commands:
       # - command
       # - command
     #finally:
