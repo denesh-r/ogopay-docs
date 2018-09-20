@@ -31,21 +31,21 @@ phases:
     #finally:
       # - command
       # - command
-  #post_build:
-    #commands:
-      # - command
+  post_build:
+    commands:
+      - discharge deploy
       # - command
     #finally:
       # - command
       # - command
-artifacts:
-    files:
-        - '**/*'
+#artifacts:
+    #files:
+        #- '**/*'
     # - location
     # - location
     # - name
   #discard-paths: yes
-    base-directory: 'build/html'
+    #base-directory: 'build/html'
 #cache:
   #paths:
     # - path
