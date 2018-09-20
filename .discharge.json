@@ -1,0 +1,13 @@
+{
+  "domain": "docs.ogo.exchange",
+  "build_command": "",
+  "upload_directory": "build/html/",
+  "index_key": "index.html",
+  "error_key": "404.html",
+  "trailing_slashes": false,
+  "cache": 3600,
+  "aws_profile": "default",
+  "aws_region": "us-east-1",
+  "cdn": false,
+  "dns_configured": true
+}
