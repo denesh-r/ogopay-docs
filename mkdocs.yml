@@ -1,0 +1,15 @@
+site_name: OGO Pay
+
+theme:
+  name: 'material'
+
+markdown_extensions:
+  - codehilite
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+nav:
+  - 'index.md'
+  - 'integration.md'
+  - 'apireference.md'

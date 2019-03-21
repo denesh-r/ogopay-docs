@@ -1,0 +1,6 @@
+{
+  "MD007": { "indent": 4 },
+  "MD024": { "allow_different_nesting": true},
+  "MD036": false,
+  "line-length": {"line_length": 120}
+}
