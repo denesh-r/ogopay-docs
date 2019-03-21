@@ -46,17 +46,6 @@ var hash = CryptoJS.HmacSHA256(stringToSign, secret);
 var hmac = hash.toString(CryptoJS.enc.Base64);
 ```
 
-``` ts tab="TS"
-const datestamp = moment().toISOString();
-
-// the secret key provided for the merchantid
-const secret = "5azaobIk7jvdFsRvuO11Ko3WkAoKEpMAz4JMvOrxkbs=";
-const stringToSign = datestamp + '\n' + body;
-
-const hash = CryptoJS.HmacSHA256(stringToSign, secret);
-const hmac = hash.toString(CryptoJS.enc.Base64);
-```
-
 <!--
 ## Errors
 
