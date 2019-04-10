@@ -4,7 +4,6 @@
   "upload_directory": "site",
   "index_key": "index.html",
   "error_key": "404.html",
-  "trailing_slashes": true,
   "cache": 3600,
   "aws_profile": "default",
   "aws_region": "us-east-1",

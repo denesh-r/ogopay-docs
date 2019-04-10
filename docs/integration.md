@@ -57,9 +57,8 @@ The following fields will be submitted to your endpoint.
 
 It is your responsibility to **process the incoming data** and **save the token** with the relevant customer.  
 You will be using this token in all future transactions related to this card.  
-**Once you complete processing** the response, you may **redirect to a different page** in your website or
-in the case of a mobile app, redirect to a url that can be processed by **intent-filters in Android** or
-**URL schemes in iOS**.
+**Once you complete processing** the response, you have to **redirect to a different page** in your website or
+in the case of a mobile app, redirect to a url that can be caught by a listener in your webview and process accordingly.
 
 ## Purchase Transaction
 
