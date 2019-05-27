@@ -128,8 +128,8 @@ If the request is successful it will return the following response
 ``` java
 @Override
 public void onResponse(JSONObject response) {
-    //Check the response 
-    //If the request is success 
+    //Check the response
+    //If the request is success
     //Load html page on a webview
     if (response.getString("success").equals("true")) {
 
@@ -214,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }
