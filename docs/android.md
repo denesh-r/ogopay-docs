@@ -2,7 +2,9 @@
 
 ---
 
-## Permissions
+## Get Started
+
+### Permissions
 
 Open your app's AndroidManifest.xml file and add the following permission.
 
@@ -12,7 +14,7 @@ Open your app's AndroidManifest.xml file and add the following permission.
 
 ---
 
-## Configuration
+### Configuration
 
 First, save the following values in the app
 
@@ -23,7 +25,7 @@ ORDER_ID="{}"
 RETURN_URL="Return url from response handler"
 ```
 
-## Url
+### Url
 
 | CONSTANT           | STRING                            |
 | ------------------ |--------------------------------|
@@ -34,7 +36,7 @@ RETURN_URL="Return url from response handler"
   String URL = OGO_BASE_URL + OGO_REGISTER_CARD;
 ```
 
-## Using android codes
+## Native Android Implementation
 
 Implement a view to enter card details.
 
@@ -44,7 +46,8 @@ Implement a view to enter card details.
 
 ### Import dependencies
 
-Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster. The easiest way to add Volley to your project is to add the following dependency to your app's build.gradle file:
+Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster.
+The easiest way to add Volley to your project is to add the following dependency to your app's build.gradle file:
 
 ``` gradle
 dependencies {
@@ -74,44 +77,43 @@ Create a new JSONObject and add the following values
 Using volley library send card details to the server.
 
 ``` java
-
 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, addCardRequest,
- new Response.Listener < JSONObject > () {
+    new Response.Listener < JSONObject > () {
 
-  @Override
-  public void onResponse(JSONObject response) {
-   //Check the response and load it on webview
-  }
- }, new Response.ErrorListener() {
+        @Override
+        public void onResponse(JSONObject response) {
+            //Check the response and load it on webview
+        }
+    }, new Response.ErrorListener() {
 
-  @Override
-  public void onErrorResponse(VolleyError error) {
+        @Override
+        public void onErrorResponse(VolleyError error) {
 
-  }
- }) {
+        }
+    })
+    {
 
- @Override
- public Map < String, String > getHeaders() throws AuthFailureError {
+        @Override
+        public Map < String, String > getHeaders() throws AuthFailureError {
 
-  HashMap < String, String > header = new HashMap < String, String > ();
-  header.put(Config.CONTENT_TYPE_HEADER, "application/json");
+            HashMap < String, String > header = new HashMap < String, String > ();
+            header.put(Config.CONTENT_TYPE_HEADER, "application/json");
 
-  return header;
- }
-};
+            return header;
+        }
+    };
 
-jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-queue.add(jsonObjectRequest);
-queue.add(jsonObjectRequest);
+    queue.add(jsonObjectRequest);
 
 ```
 
-If the request success it will return the following response
-
 ### Response
+
+If the request is successful it will return the following response
 
 ``` json
 {
@@ -126,29 +128,28 @@ If the request success it will return the following response
 ``` java
 @Override
 public void onResponse(JSONObject response) {
- //Check the response 
- //If the request is success 
- //Load html page on a webview
- if (response.getString("success").equals("true")) {
+    //Check the response 
+    //If the request is success 
+    //Load html page on a webview
+    if (response.getString("success").equals("true")) {
 
-  webView.loadData(response.getString("result"), "text/html; " + "charset=utf-8", "UTF-8");
+        webView.loadData(response.getString("result"), "text/html; " + "charset=utf-8", "UTF-8");
 
-  //waiting for receive redirect url
-  webView.setWebViewClient(new WebViewClient() {
+        //waiting for receive redirect url
+        webView.setWebViewClient(new WebViewClient() {
 
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-     if (url.contains("add-success=true")) {
-      finish(); //if url returns "true" close the view and back to main
-     } else {
-      Toast.makeText(getApplicationContext(), getString(R.string.new_add_card_fail_message), Toast.LENGTH_LONG).show();
-      return false;
-     }
-    });
-
-  }
- }
+                if (url.contains("add-success=true")) {
+                finish(); //if url returns "true" close the view and back to main
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.new_add_card_fail_message), Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            });
+        }
+    }
 }
 ```
 

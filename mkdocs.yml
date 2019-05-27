@@ -12,5 +12,5 @@ markdown_extensions:
 nav:
   - 'index.md'
   - 'integration.md'
-  - 'apireference.md'
   - 'applications.md'
+  - 'apireference.md'
