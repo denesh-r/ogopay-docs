@@ -6,7 +6,7 @@
 
 ## Card Capture Form
 
-Design a card capture form in your application front end. This might be an Android or iOS mobile app, an Angular/Vue/React
+Design a card capture form in your application front end. This might be an [Android](applications.md#Usage) or iOS mobile app, an Angular/Vue/React
 front end, or a PHP, JSP, ExpressJS or any other server side generated HTML website.
 
 !!! warning "Secure your website with HTTPS"
