@@ -34,10 +34,9 @@ RETURN_URL="Return url from response handler"
   String URL = OGO_BASE_URL + OGO_REGISTER_CARD;
 ```
 
-
 ## Using android codes
 
-Implement a view to enter card details. 
+Implement a view to enter card details.
 
 ![Screenshot](img/card_view.jpg)
 
@@ -47,7 +46,6 @@ Implement a view to enter card details.
 
 Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster. The easiest way to add Volley to your project is to add the following dependency to your app's build.gradle file:
 
-
 ``` gradle
 dependencies {
     ...
@@ -56,8 +54,6 @@ dependencies {
 ```
 
 ### JSON Object
-
-
 
 Create a new JSONObject and add the following values
 
@@ -72,13 +68,14 @@ Create a new JSONObject and add the following values
             addNewCardJson.put("orderId", ORDER_ID);
             addNewCardJson.put("returnUrl", RETURN_URL);
 ```
+
 ### Send card details to the server
 
-Using volley library send card details to the server. 
+Using volley library send card details to the server.
 
 ``` java
 
-RequestQueue queue = Volley.newRequestQueue(getApplicationContext());               
+RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, addCardRequest,
  new Response.Listener < JSONObject > () {
@@ -108,13 +105,13 @@ JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
 jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 queue.add(jsonObjectRequest);
-queue.add(jsonObjectRequest);               
-				
+queue.add(jsonObjectRequest);
+
 ```
 
 If the request success it will return the following response
 
-**Response**
+### Response
 
 ``` json
 {
@@ -122,9 +119,9 @@ If the request success it will return the following response
   "message": "3DSecure Page",
   "result": "<!DOCTYPE HTML PUBLIC..."
 }
-``` 
+```
 
-###Check the response and load the HTML page
+### Check the response and load the HTML page
 
 ``` java
 @Override
@@ -154,7 +151,6 @@ public void onResponse(JSONObject response) {
  }
 }
 ```
-
 
 <!-- 		
 
