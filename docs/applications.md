@@ -34,6 +34,130 @@ RETURN_URL="Return url from response handler"
   String URL = OGO_BASE_URL + OGO_REGISTER_CARD;
 ```
 
+
+## Using android codes
+
+Implement a view to enter card details. 
+
+![Screenshot](img/card_view.jpg)
+
+---
+
+### Import dependencies
+
+Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster. The easiest way to add Volley to your project is to add the following dependency to your app's build.gradle file:
+
+
+``` gradle
+dependencies {
+    ...
+    compile 'com.android.volley:volley:1.1.1'
+}
+```
+
+### JSON Object
+
+
+
+Create a new JSONObject and add the following values
+
+``` java
+ JSONObject addNewCardJson = new JSONObject();
+            addNewCardJson.put("cardHolderName", {YOUR CARD HOLDER NAME});
+            addNewCardJson.put("cardNumber", {YOUR CARD NUMBER});
+            addNewCardJson.put("expiryMonth", {YOUR CARD EXPIRY MONTH});
+            addNewCardJson.put("expiryYear", {YOUR CARD EXPIRY YEAR});
+            addNewCardJson.put("merchantId", MERCHANT_ID);
+            addNewCardJson.put("customerId", CLIENT_ID);
+            addNewCardJson.put("orderId", ORDER_ID);
+            addNewCardJson.put("returnUrl", RETURN_URL);
+```
+### Send card details to the server
+
+Using volley library send card details to the server. 
+
+``` java
+
+RequestQueue queue = Volley.newRequestQueue(getApplicationContext());               
+
+JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, addCardRequest,
+ new Response.Listener < JSONObject > () {
+
+  @Override
+  public void onResponse(JSONObject response) {
+   //Check the response and load it on webview
+  }
+ }, new Response.ErrorListener() {
+
+  @Override
+  public void onErrorResponse(VolleyError error) {
+
+  }
+ }) {
+
+ @Override
+ public Map < String, String > getHeaders() throws AuthFailureError {
+
+  HashMap < String, String > header = new HashMap < String, String > ();
+  header.put(Config.CONTENT_TYPE_HEADER, "application/json");
+
+  return header;
+ }
+};
+
+jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+queue.add(jsonObjectRequest);
+queue.add(jsonObjectRequest);               
+				
+```
+
+If the request success it will return the following response
+
+**Response**
+
+``` json
+{
+  "success": true,
+  "message": "3DSecure Page",
+  "result": "<!DOCTYPE HTML PUBLIC..."
+}
+``` 
+
+###Check the response and load the HTML page
+
+``` java
+@Override
+public void onResponse(JSONObject response) {
+ //Check the response 
+ //If the request is success 
+ //Load html page on a webview
+ if (response.getString("success").equals("true")) {
+
+  webView.loadData(response.getString("result"), "text/html; " + "charset=utf-8", "UTF-8");
+
+  //waiting for receive redirect url
+  webView.setWebViewClient(new WebViewClient() {
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+     if (url.contains("add-success=true")) {
+      finish(); //if url returns "true" close the view and back to main
+     } else {
+      Toast.makeText(getApplicationContext(), getString(R.string.new_add_card_fail_message), Toast.LENGTH_LONG).show();
+      return false;
+     }
+    });
+
+  }
+ }
+}
+```
+
+
+<!-- 		
+
 ## Using android library
 
 *Step 1.* 
@@ -118,145 +242,4 @@ public class MainActivity extends AppCompatActivity {
 
 </LinearLayout>
 ```
-
-## Using android codes
-
-Implement a view to enter card details. 
-
-![Screenshot](img/card_view.jpg)
-
----
-
-### Import dependencies
-
-Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster. The easiest way to add Volley to your project is to add the following dependency to your app's build.gradle file:
-
-
-``` gradle
-dependencies {
-    ...
-    compile 'com.android.volley:volley:1.1.1'
-}
-```
-
-### JSON Object
-
-
-
-Create a new JSONObject and add the following values
-
-``` java
- JSONObject addNewCardJson = new JSONObject();
-            addNewCardJson.put("cardHolderName", {YOUR CARD HOLDER NAME});
-            addNewCardJson.put("cardNumber", {YOUR CARD NUMBER});
-            addNewCardJson.put("expiryMonth", {YOUR CARD EXPIRY MONTH});
-            addNewCardJson.put("expiryYear", {YOUR CARD EXPIRY YEAR});
-            addNewCardJson.put("merchantId", MERCHANT_ID);
-            addNewCardJson.put("customerId", CLIENT_ID);
-            addNewCardJson.put("orderId", ORDER_ID);
-            addNewCardJson.put("returnUrl", RETURN_URL);
-```
-### Send card details to the server
-
-Using volley library send card details to the server. 
-
-``` java
-
-RequestQueue queue = Volley.newRequestQueue(getApplicationContext());               
-
-JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,addCardRequest , new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //Check the response and load it on webview
-                    }
-}, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                      
-                    }
-                }) {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> header = new HashMap<String, String>();
-                        header.put(Config.CONTENT_TYPE_HEADER, "application/json");
-                        return header;
-                    }
-                };
-
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                        10000,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                queue.add(jsonObjectRequest);
-                queue.add(jsonObjectRequest);                
-				
-```
-
-If the request success it will return the following response
-
-**Response**
-
-``` json
-{
-  "success": true,
-  "message": "3DSecure Page",
-  "result": "<!DOCTYPE HTML PUBLIC..."
-}
-``` 
-
-###Check the response and load the HTML page
-
-``` java
- @Override
- public void onResponse(JSONObject response) {
-     //Check the response 
-	 //If the request is success 
-	 //Load html page on a webview
-	 if (response.getString("success").equals("true")) {
-                             
-        webView.loadData(response.getString("result"), "text/html; " + "charset=utf-8", "UTF-8");
-
-        //waiting for receive redirect url
-        webView.setWebViewClient(new WebViewClient(){
-		
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        
-			if (url.contains("add-success=true")){
-				finish(); //if url returns "true" close the view and back to main
-			}else{
-				Toast.makeText(getApplicationContext(), getString(R.string.new_add_card_fail_message), Toast.LENGTH_LONG).show();
-				return false;
-			}
-        });
- }
-```
-
-
-<!-- 
-        DoPurchase:
-          Type: Api
-          Properties:
-            Path: /purchase
-            Method: post
-        DoSettlement:
-          Type: Api
-          Properties:
-            Path: /settlement
-            Method: post
-        DoVoid:
-          Type: Api
-          Properties:
-            Path: /void
-            Method: post
-        DoPreauth:
-          Type: Api
-          Properties:
-            Path: /preauth
-            Method: post
-        DoCompletion:
-          Type: Api
-          Properties:
-            Path: /completion
-            Method: post 
 -->
