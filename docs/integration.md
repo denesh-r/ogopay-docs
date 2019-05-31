@@ -6,8 +6,8 @@
 
 ## Card Capture Form
 
-Design a card capture form in your application front end. This might be an [Android](applications.md#Usage) or iOS mobile app, an Angular/Vue/React
-front end, or a PHP, JSP, ExpressJS or any other server side generated HTML website.
+Design a card capture form in your application front end. This might be an [Android](android.md#Usage) or iOS mobile app,
+an Angular/Vue/React front end, or a PHP, JSP, ExpressJS or any other server side generated HTML website.
 
 !!! warning "Secure your website with HTTPS"
     Please make your website is secured with a **TLS certificate**.
@@ -51,6 +51,7 @@ The following fields will be submitted to your endpoint.
 + cardMask (masked card number in the format 4242-42xx-xxxx-4242)
 + expiryMonth (two digit month)
 + expiryYear (two digit year)
++ cardType (V for Visa, M for Mastercard and U for Unionpay)
 + merchantId (the merchant id sent with the tokenize api call)
 + customerId (the customer id sent with the tokenize api call)
 + orderId (the order id sent with the tokenize api call)

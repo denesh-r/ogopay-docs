@@ -40,10 +40,22 @@ var datestamp = moment().toISOString();
 
 // the secret key provided for the merchantid
 var secret = "5azaobIk7jvdFsRvuO11Ko3WkAoKEpMAz4JMvOrxkbs=";
-var stringToSign = datestamp + '\n' + body;
+var stringToSign = datestamp + '\n' + JSON.stringify(requestBody);
 
-var hash = CryptoJS.HmacSHA256(stringToSign, secret);
-var hmac = hash.toString(CryptoJS.enc.Base64);
+var hmac = CryptoJS.HmacSHA256(stringToSign, secret);
+var hash = hmac.toString(CryptoJS.enc.Base64);
+```
+
+``` php tab="PHP"
+<?php
+// the secret key provided for the merchantid
+$secret = "5azaobIk7jvdFsRvuO11Ko3WkAoKEpMAz4JMvOrxkbs=";
+
+$isoDateTime = date('c');
+$jsonString = json_decode($body);
+$strToSign = $isoDate."\n".$jsonString;
+$hmac =  hash_hmac('sha256', $strToSign, $secret, true);
+$hash = base64_encode($hmac);
 ```
 
 <!--
