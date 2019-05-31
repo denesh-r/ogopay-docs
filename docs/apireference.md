@@ -53,7 +53,7 @@ $secret = "5azaobIk7jvdFsRvuO11Ko3WkAoKEpMAz4JMvOrxkbs=";
 
 $isoDateTime = date('c');
 $jsonString = json_decode($body);
-$strToSign = $isoDate."\n".$jsonString;
+$strToSign = $isoDateTime."\n".$jsonString;
 $hmac =  hash_hmac('sha256', $strToSign, $secret, true);
 $hash = base64_encode($hmac);
 ```
