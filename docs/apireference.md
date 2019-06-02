@@ -163,18 +163,6 @@ Content-Type: application/json
 ```
 
 ---
-<!--
-        RegisterCard:
-          Type: Api
-          Properties:
-            Path: /registercard
-            Method: post
-        DefaultHostedPage:
-          Type: Api
-          Properties:
-            Path: /defaulthostedpage
-            Method: get
--->
 
 ### Purchase Transaction
 
@@ -196,8 +184,8 @@ Authorization: OGO merchantid:hmac-hash
 {
   "amount": 20050,
   "token": "1d75cb9494bd437ab2bbc6ed7e5c9933",
-  "orderID": "100DCEFGH",
-  "customerID":"123"
+  "orderId": "100DCEFGH",
+  "customerId":"123"
 }
 ```
 
@@ -222,31 +210,3 @@ Authorization: OGO merchantid:hmac-hash
 }
 
 ```
-
-<!-- 
-        DoPurchase:
-          Type: Api
-          Properties:
-            Path: /purchase
-            Method: post
-        DoSettlement:
-          Type: Api
-          Properties:
-            Path: /settlement
-            Method: post
-        DoVoid:
-          Type: Api
-          Properties:
-            Path: /void
-            Method: post
-        DoPreauth:
-          Type: Api
-          Properties:
-            Path: /preauth
-            Method: post
-        DoCompletion:
-          Type: Api
-          Properties:
-            Path: /completion
-            Method: post 
--->
