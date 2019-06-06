@@ -54,7 +54,7 @@ $secret = "5azaobIk7jvdFsRvuO11Ko3WkAoKEpMAz4JMvOrxkbs=";
 $isoDateTime = date('c');
 $jsonString = json_decode($body);
 $strToSign = $isoDateTime."\n".$jsonString;
-$hmac =  hash_hmac('sha256', $strToSign, $secret, true);
+$hmac = hash_hmac('sha256', $strToSign, $secret, true);
 $hash = base64_encode($hmac);
 ```
 
@@ -208,5 +208,8 @@ Authorization: OGO merchantid:hmac-hash
     "message": "Approved"
   }
 }
-
 ```
+
+!!! warning "Invalid Token error"
+    If you get an "Invalid Token" error, make sure you are sending the same customerId used with the token when
+    registering the card.

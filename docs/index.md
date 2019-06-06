@@ -11,7 +11,7 @@ applications.
 + [x] Only cards supporting **3DSecure** can be used.  
         3DSecure is an additional layer of authentication provided by card issuers to validate the card holder.
         The customer will be directed to his/her bank's webpage to validate a transaction via an OTP.
-        We use this method to validate a card before tokenizing a card.
+        We use this method to validate a card before tokenizing it.
 + [x] **Installment plans** are supported.  
         This allows your customer to split a large payment into equal monthly installments of his/her choice.
 + [x] **Preauth + Completion** model is supported.  
