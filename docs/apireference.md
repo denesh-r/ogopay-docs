@@ -58,6 +58,20 @@ $hmac = hash_hmac('sha256', $strToSign, $secret, true);
 $hash = base64_encode($hmac);
 ```
 
+``` txt tab="Example"
+When the secret key is "AXz7ovfpCdzznQMgFUnN8IPlyH1+qAVMjF5CaYbopIc="
+And the date is "2019-06-02T09:30:01.561Z"
+For the following request string...
+{"amount":100,"token":"3173b35fcc744fa88c5cdb425838cd08","orderId":"an-order-id","customerId":"23"}
+
+The string to sign will be... (date and request string separated by newline)
+2019-06-02T09:30:01.561Z
+{"amount":100,"token":"3173b35fcc744fa88c5cdb425838cd08","orderId":"an-order-id","customerId":"23"}
+
+The resulting hmac hash will be...
+NI5HlmdhylurFACRLFuqbzWVokAldAu8lXUFzLzfsH0=
+```
+
 <!--
 ## Errors
 
