@@ -3,9 +3,9 @@
 There are two ways of capturing card data. The easiest way is to load and display our card capture webpage,
 the other is to build your own card capture form and submit the details to us via an API endpoint.
 
-!!! note
+<!-- !!! note
     Using our card capture page is recommended as per CBSL guidelines.
-    For advanced use cases, you may opt in to use custom forms.
+    For advanced use cases, you may opt in to use custom forms. -->
 
 1. Load and display [our card capture page](#using-our-card-capture-page) in your application
     or use your own [custom card capture form](#using-custom-card-capture-form) .
