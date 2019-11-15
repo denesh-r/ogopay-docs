@@ -7,8 +7,8 @@ the other is to build your own card capture form and submit the details to us vi
     Using our card capture page is recommended as per CBSL guidelines.
     For advanced use cases, you may opt in to use custom forms. -->
 
-1. Load and display [our card capture page](#using-our-card-capture-page) in your application
-    or use your own [custom card capture form](#using-custom-card-capture-form) .
+1. Load and display [our card capture page](#using-our-card-capture-page) in your application.
+    <!-- or use your own [custom card capture form](#using-custom-card-capture-form) . -->
 2. Next, implement a [response handler](#response-handler) in your application backend.  
 3. Finally, integrate a call to perform a [purchase transaction](#purchase-transaction) from your application backend.
 
@@ -27,7 +27,7 @@ Replace the following...
 * ```merchantId``` should be the live or test environment merchantId provided to you
 * ```customerId``` should be the unique customerId on your end which you will later use when performing transactions
 
-## Using Custom Card Capture Form
+<!-- ## Using Custom Card Capture Form
 
 Design a card capture form in your application front end. This might be an [Android](android.md#Usage) or iOS mobile app,
 an Angular/Vue/React front end, or a PHP, JSP, ExpressJS or any other server side generated HTML page.
@@ -59,7 +59,7 @@ Depending on the type of response you prefer to work with, you may either submit
     or **SUBMIT** to any unauthorized services.
 
     *Card details must only be submitted to the OGO Pay service and must be directly submitted from the user's mobile device
-    or browser*.
+    or browser*. -->
 
 ## Response Handler
 

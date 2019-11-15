@@ -13,5 +13,5 @@ nav:
   - 'index.md'
   - 'become-merchant.md'
   - 'integration.md'
-  - 'android.md'
+  #- 'android.md'
   - 'apireference.md'
